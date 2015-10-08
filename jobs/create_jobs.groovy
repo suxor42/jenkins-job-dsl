@@ -4,7 +4,9 @@
 import org.yaml.snakeyaml.Yaml
 
 def yaml = new Yaml()
-def object = yaml.load(new File('resources/test_data.yml').text)
+def file = new File('resources/test_data.yml')
+println(file.absolute)
+def object = yaml.load(file.text)
 assert object instanceof Map
 
 object.applications.each {
