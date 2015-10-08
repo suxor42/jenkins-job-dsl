@@ -37,6 +37,6 @@ task libs(type: Copy) {
 }
 
 task config_setup(type: Copy) {
-    into 'jobs/resorces'
+    into 'jobs/resources'
     from 'resources'
 }
