@@ -35,3 +35,8 @@ task libs(type: Copy) {
     into 'libs'
     from configurations.compile
 }
+
+task config_setup(type: Copy) {
+    into 'jobs/resorces'
+    from 'resources'
+}
