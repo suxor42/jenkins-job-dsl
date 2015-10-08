@@ -1,0 +1,32 @@
+---
+stacks:
+  ruby-2.2:
+    solution: 64bit Amazon Linux 2015.03 v2.0.1 running Ruby 2.2 (Puma)
+  java-8:
+    solution: 64bit Amazon Linux 2015.03 v2.0.2 running Java 8
+
+applications:
+  event_handler:
+    stack: ruby-2.2
+    instance_type: c4.large
+    scale:
+      min: 3
+      max: 6
+    config:
+      RAILS_ENV: production
+      UNICORNS_COUNT: 6
+
+environments:
+  prod:
+    event_handler:
+      config:
+        AWS_STACKNAME: prod
+  staging:
+    event_handler:
+      scale:
+        min: 1
+        max: 3
+      instance_type: t2.small
+      config:
+        AWS_STACKNAME: staging
+        UNICORNS_COUNT: 2
