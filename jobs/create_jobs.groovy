@@ -5,7 +5,7 @@ import org.yaml.snakeyaml.Yaml
 
 def yaml = new Yaml()
 def file = new File('resources/test_data.yml')
-println(file.absolutePath)
+println(file.canonicalPath)
 def object = yaml.load(file.text)
 assert object instanceof Map
 
