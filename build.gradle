@@ -21,7 +21,7 @@ dependencies {
         exclude module: 'groovy-all'
     }
 
-    compile 'org.yaml:snakeyaml:1.5'
+    runtime 'org.yaml:snakeyaml:1.5'
 }
 
 
