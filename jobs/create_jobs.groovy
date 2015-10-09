@@ -2,7 +2,7 @@ import org.yaml.snakeyaml.Yaml
 
 /*
 When running inside jenkins the script tries to access /resources
-When running locally the scripts tries to access ${project.root}resources
+When running via gradle test the scripts tries to access ${project.root}/resources
 */
 def file
 try {

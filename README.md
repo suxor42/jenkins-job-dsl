@@ -1,4 +1,5 @@
-# Gradle project to create jenkins job via jenkins jod-dsl
+# Gradle project to create jenkins job via jenkins [job-dsl](https://github.com/jenkinsci/job-dsl-plugin)
+Project was created according to structure in https://github.com/sheehan/job-dsl-gradle-example
 
 ## Requierements
 * Groovy SDK
