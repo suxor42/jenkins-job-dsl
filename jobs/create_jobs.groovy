@@ -3,10 +3,14 @@
 
 import org.yaml.snakeyaml.Yaml
 
-def workspace = "${WORKSPACE}"
+def file
+try {
+    file = new File("${WORKSPACE}", 'resources/test_data.yml')
+} catch (groovy.lang.MissingPropertyException exception) {
+    file = new File('resources/test_data.yml')
+}
+
 def yaml = new Yaml()
-def file = new File('resources/test_data.yml')
-println(workspace)
 println(file.canonicalPath)
 def object = yaml.load(file.text)
 assert object instanceof Map
