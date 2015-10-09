@@ -3,7 +3,7 @@
 
 import org.yaml.snakeyaml.Yaml
 
-def workspace = System.getenv('WORKSPACE')
+def workspace = '${WORKSPACE}'
 def yaml = new Yaml()
 def file = new File('resources/test_data.yml')
 println(workspace)
