@@ -22,7 +22,7 @@ assert json instanceof Map
 json.each {
     String environmentname, Map config ->
         println(environmentname)
-        createJobs(environmentname, config.applications)
+        createJobs(environmentname, config.applications as Map)
 }
 
 def createJobs(String environmentname, Map applications){
@@ -35,7 +35,7 @@ def createJobs(String environmentname, Map applications){
 
 def createJob(String environment, String applicationname, Map config){
 
-    job("$applicationname-$environment") {
+    job("deployment-$applicationname-$environment") {
         scm {
             git("https://github.com/as-ideas/yana-$applicationname")
         }
