@@ -45,6 +45,7 @@ def createJob(String environment, String applicationname, Map config){
         steps {
             shell("eb deploy $environment")
         }
+        disabled()
 
     }
 
