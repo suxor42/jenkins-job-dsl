@@ -15,19 +15,21 @@ try {
 def yaml = new Yaml()
 def JsonSlurper jsonParser = new JsonSlurper();
 println(file.canonicalPath)
-def object = jsonParser.parseText(file.text)
-assert object instanceof Map
+def json = jsonParser.parseText(file.text)
+assert json instanceof Map
 
 
-
-object.environment.each {
+json.each {
     String environmentname, Map config ->
-        createJobs(environmentname, config, object.applications.keySet() as List)
+        println(environmentname)
+        createJobs(environmentname, config.applications)
 }
 
-def createJobs(String environmentname, Map config, List applications){
+def createJobs(String environmentname, Map applications){
     applications.each {
-        application -> createJob(environmentname, application, config)
+        application, configuration ->
+            println(application)
+            createJob(environmentname, application, configuration.config)
     }
 }
 
