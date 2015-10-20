@@ -20,14 +20,14 @@ assert object instanceof Map
 
 
 
-object.applications.each {
-    String applicationame, Map config ->
-        createJobs(applicationame, config, object.environments.keySet() as List)
+object.environment.each {
+    String environmentname, Map config ->
+        createJobs(environmentname, config, object.applications.keySet() as List)
 }
 
-def createJobs(String applicationname, Map config, List environments){
-    environments.each {
-        environment -> createJob(environment, applicationname, config)
+def createJobs(String environmentname, Map config, List applications){
+    applications.each {
+        application -> createJob(environmentname, application, config)
     }
 }
 
