@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 import org.yaml.snakeyaml.Yaml
 
 /*
@@ -6,14 +7,15 @@ When running via gradle test the scripts tries to access ${project.root}/resourc
 */
 def file
 try {
-    file = new File("${WORKSPACE}", 'resources/test_data.yml')
+    file = new File("${WORKSPACE}", 'resources/test_data.json')
 } catch (groovy.lang.MissingPropertyException exception) {
-    file = new File('resources/test_data.yml')
+    file = new File('resources/test_data.json')
 }
 
 def yaml = new Yaml()
+def JsonSlurper jsonParser = new JsonSlurper();
 println(file.canonicalPath)
-def object = yaml.load(file.text)
+def object = jsonParser.parseText(file.text)
 assert object instanceof Map
 
 
@@ -30,7 +32,6 @@ def createJobs(String applicationname, Map config, List environments){
 }
 
 def createJob(String environment, String applicationname, Map config){
-    println("$applicationname-$environment: $config")
 
     job("$applicationname-$environment") {
         scm {
@@ -42,6 +43,7 @@ def createJob(String environment, String applicationname, Map config){
         steps {
             shell("eb deploy $environment")
         }
+
     }
 
 
